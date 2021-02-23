@@ -15,8 +15,8 @@ import javax.swing.text.StyledDocument;
 import java.util.Timer;
 
 /**
- *
- * @author Federico
+ * lmao
+ * @author Federico 
  */
 public class TypingGame extends JPanel implements KeyListener {
 
