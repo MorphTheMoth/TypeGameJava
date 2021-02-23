@@ -49,10 +49,10 @@ public class RandomInsultAPI extends Thread {
             System.out.println("URL: "+url);
             server = new URL(url);
             service = (HttpURLConnection)server.openConnection();
-            //service.setRequestProperty("Host", "127.0.0.1"); // impostazione header richiesta: host
+            //service.setRequestProperty("Host", "127.0.0.1"); // impostazione header richiesta:  host
             
-            service.setRequestProperty("Accept", "text/plain"); // impostazione header richiesta: formato risposta
-            service.setRequestProperty("Accept-Charset", "UTF-8"); // impostazione header richiesta: codifica risposta
+            service.setRequestProperty("Accept", "text/plain"); // impostazione header richiesta:  formato risposta
+            service.setRequestProperty("Accept-Charset", "UTF-8"); // impostazione header richiesta:  codifica risposta
             
             service.setRequestMethod("GET"); // impostazione metodo di richiesta GET
             service.setDoInput(true); // attivazione ricezione
