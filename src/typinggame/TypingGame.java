@@ -6,13 +6,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import java.util.Timer;
 
 /**
  * lmao
@@ -30,6 +28,9 @@ public class TypingGame extends JPanel implements KeyListener {
         frame.getContentPane().add(new TypingGame());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
+        
+        RandomInsultAPI.initialize();
+        SpeakerThread.initialize();
 
         frame.setVisible(true);
 
@@ -53,8 +54,6 @@ public class TypingGame extends JPanel implements KeyListener {
 
         textPane.addKeyListener(this);
 
-        dospeak("kevin16");
-
     }
 
     @Override
@@ -65,7 +64,7 @@ public class TypingGame extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyChar());
+        //System.out.println(e.getKeyChar());
         if (e.getKeyCode() != KeyEvent.VK_SHIFT) {
 
             if (e.getKeyChar() == textPane.getText().charAt(count)) {
@@ -81,7 +80,7 @@ public class TypingGame extends JPanel implements KeyListener {
                 StyleConstants.setForeground(set, Color.white);
                 doc.setCharacterAttributes(count, 1, set, true);
                 
-                //SpeakText("sbagliato");           //dice la stringa immessa
+                SpeakerThread.speak(RandomInsultAPI.getInsult());           //dice la stringa immessa
                 
                 
                 //System.out.println("sbagliato");
@@ -94,30 +93,4 @@ public class TypingGame extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
     }
 
-    //inizializzazione tts
-    String speaktext;
-    Voice voice;
-
-    public void dospeak(String voicename) {
-        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-        voice = VoiceManager.getInstance().getVoice("kevin16");
-        if (voice != null) {
-            voice.allocate();// Allocating Voice
-            try {
-                voice.setRate(130);// Setting the rate of the voice
-                voice.setPitch(100);// Setting the Pitch of the voice
-                voice.setVolume(1);// Setting the volume of the voice
-
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-
-        } else {
-            throw new IllegalStateException("Cannot find voice: kevin16");
-        }
-    }
-
-    public void SpeakText(String words) {
-        voice.speak(words);
-    }
 }
