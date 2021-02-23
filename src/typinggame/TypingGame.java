@@ -23,7 +23,7 @@ public class TypingGame extends JPanel implements KeyListener {
             + "Curabitur tempor consequat nisl, ut pretium ligula rhoncus nec. Donec feugiat iaculis justo, vel consectetur quam egestas quis. Cras sodales non orci at aliquam. Praesent vulputate, magna et bibendum maximus, lectus metus finibus justo, id egestas nisi velit ut tellus. Vivamus eget mauris sit amet lacus iaculis euismod a non ex. Pellentesque consequat sem vitae felis aliquam, sit amet vehicula dolor dignissim. Aenean vel odio sagittis, placerat ligula in, vulputate mi. In pretium tristique sodales. Nulla sed nibh lobortis, fringilla urna quis, tristique diam. Integer lobortis dictum mauris, eget consectetur ex vehicula gravida. Proin lobortis, felis et vehicula rutrum, mauris nulla ultricies massa, in volutpat magna ante eget turpis. ";
 
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         JFrame frame = new JFrame("KeyTyping Game");
         frame.getContentPane().add(new TypingGame());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

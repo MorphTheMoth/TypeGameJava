@@ -34,7 +34,7 @@ public class RandomInsultAPI extends Thread {
 
     public void run() {
         //request insult
-        //set nextInsult to the response
+        //set 'nextInsult' to the response 
         nextInsult = doRequest();//String.valueOf((int) Math.floor(Math.random() * 10));   //DA MODIFICARE CON L'INSULTO
     }
     

@@ -9,7 +9,7 @@ import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
 /**
- *
+ * 
  * @author green
  */
 public class SpeakerThread extends Thread {
@@ -25,7 +25,7 @@ public class SpeakerThread extends Thread {
     }
 
     public static void speak(String text) {
-        if( ThreadNum < MAXTHREAD )     //non ne mette più di uno in coda
+        if( ThreadNum < MAXTHREAD )     //non ne mette più di uno in coda 
             new SpeakerThread(text).start();
     }
 
