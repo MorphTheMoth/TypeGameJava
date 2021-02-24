@@ -8,10 +8,12 @@ package typinggame;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+
 /**
  * 
  * @author green
  */
+
 public class SpeakerThread extends Thread {
 
     private static Voice voice;
@@ -36,15 +38,38 @@ public class SpeakerThread extends Thread {
     public void run() {
         
         ThreadNum++;
-        voice.speak(currentText);
+        freettsVoice.speak(currentText);
         ThreadNum--;
         
     }
 
-
+    
+    static VoiceManager freettsVM;
+    static Voice freettsVoice;
+    
     public static void dospeak(String voicename) {
-        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-        voice = VoiceManager.getInstance().getVoice("kevin16");
+        System.setProperty("freetts.voices", "de.dfki.lt.freetts.en.us.MbrolaVoiceDirectory");
+
+        System.setProperty("mbrola.base", "C:\\Users\\Federico\\Desktop\\ScuolaPortatile\\TPSIT\\TypeGameJava\\mbrola\\");
+
+        //System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        
+        
+        freettsVM = VoiceManager.getInstance();
+
+        Voice[] arr = VoiceManager.getInstance().getVoices();
+        for(int i=0; i<arr.length; i++)
+            System.out.println("   --   "+arr[i].getName());
+        
+        // Simply change to MBROLA voice
+        freettsVoice = freettsVM.getVoice("mbrola_us1");
+
+        // Allocate your chosen voice
+        freettsVoice.allocate();
+        
+        
+        
+        /*voice = VoiceManager.getInstance().getVoice("us1");
         if (voice != null) {
             voice.allocate();// Allocating Voice
             try {
@@ -58,7 +83,7 @@ public class SpeakerThread extends Thread {
 
         } else {
             throw new IllegalStateException("Cannot find voice: kevin16");
-        }
+        }*/
     }
     
     
