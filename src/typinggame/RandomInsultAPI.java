@@ -67,6 +67,11 @@ public class RandomInsultAPI extends Thread {
             String s = response.lines().collect(Collectors.joining());
             response.close();
             
+            if(s.substring(0, 5).equals("&quot")){
+                System.out.println("stringa rotta" + s.substring(0,5));
+                doRequest();
+            }
+            
             return s;
             
         } catch (IOException e) {

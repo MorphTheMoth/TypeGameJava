@@ -7,6 +7,7 @@ package typinggame;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import static typinggame.TypingGame.timer;
 
 
 /**
@@ -23,12 +24,15 @@ public class SpeakerThread extends Thread {
     
 
     public static void initialize() {
-        dospeak("kevin16");
+        dospeak();
     }
 
     public static void speak(String text) {
         if( ThreadNum < MAXTHREAD )     //non ne mette più di uno in coda 
+        {
             new SpeakerThread(text).start();
+            typinggame.TypingGame.sottotitoli.setText(text);
+        }
     }
 
     public SpeakerThread(String text) {
@@ -47,10 +51,10 @@ public class SpeakerThread extends Thread {
     static VoiceManager freettsVM;
     static Voice freettsVoice;
     
-    public static void dospeak(String voicename) {
+    public static void dospeak() {
         System.setProperty("freetts.voices", "de.dfki.lt.freetts.en.us.MbrolaVoiceDirectory");
 
-        System.setProperty("mbrola.base", "C:\\Users\\Federico\\Desktop\\ScuolaPortatile\\TPSIT\\TypeGameJava\\mbrola\\");
+        System.setProperty("mbrola.base", System.getProperty("user.dir") + "\\mbrola\\");
 
         //System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         
