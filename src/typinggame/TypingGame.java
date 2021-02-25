@@ -133,7 +133,9 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
             if (count == text.length()) {
                 System.out.println("vittoria");
                 vittoria = true;
+                textPane.removeKeyListener(this);
                 t.stop();
+                
             }
         }
 
