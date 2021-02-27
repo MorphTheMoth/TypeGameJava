@@ -7,51 +7,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
- * @author green
+ * @author deste
  */
-public class RandomInsultAPI extends Thread {
-
-    private static String nextInsult;
-
-    public static void initialize() {
-        //get first string...
-        new RandomInsultAPI().start();
-    }
-
-    public static String getInsult() {
-        //get next string...
-        new RandomInsultAPI().start();
-
-        //returns the current one
-        return nextInsult;
-    }
-
-    public RandomInsultAPI() {
-        //thread constructor
-    }
-
-    public void run() {
-        //request insult
-        //set 'nextInsult' to the response 
-        nextInsult = doRequest();//String.valueOf((int) Math.floor(Math.random() * 10));   //DA MODIFICARE CON L'INSULTO
-    }
-    
-    public String doRequest(){
+public class RandomTextApi {
+    public static String getText(){
+        
         URL server;
         HttpURLConnection service;
         BufferedReader response;
         
         int status;
         try {
-            String url = "https://evilinsult.com/generate_insult.php?lang=en"; // costruzione dello URL di interrogazione del servizio
+            String url = "https://www.randomtextgenerator.com"; // costruzione dello URL di interrogazione del servizio
             //System.out.println("URL: "+url);
             server = new URL(url);
             service = (HttpURLConnection)server.openConnection();
             //service.setRequestProperty("Host", "127.0.0.1"); // impostazione header richiesta:  host
             
-            service.setRequestProperty("Accept", "text/plain"); // impostazione header richiesta:  formato risposta
+            service.setRequestProperty("Accept", "text/html"); // impostazione header richiesta:  formato risposta
             service.setRequestProperty("Accept-Charset", "UTF-8"); // impostazione header richiesta:  codifica risposta
             
             service.setRequestMethod("GET"); // impostazione metodo di richiesta GET
@@ -67,15 +48,14 @@ public class RandomInsultAPI extends Thread {
             String s = response.lines().collect(Collectors.joining());
             response.close();
             
-            s = s.replaceAll("&quot;", "\"");
+            //System.out.println(s);
             
             return s;
             
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         return "";
     }
-
 }
-//&gt; &amp;

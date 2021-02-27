@@ -7,7 +7,6 @@ package typinggame;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import static typinggame.TypingGame.timer;
 
 
 /**
