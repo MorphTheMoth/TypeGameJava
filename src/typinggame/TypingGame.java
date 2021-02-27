@@ -27,10 +27,10 @@ import javax.swing.text.StyledDocument;
  */
 public class TypingGame extends JPanel implements KeyListener, Runnable {
 
-    //private String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel aliquam ex. Fusce eu sapien tempus, varius erat eget, aliquam magna. Curabitur quis velit id mi ornare molestie quis a ipsum. Etiam ullamcorper ornare feugiat. Fusce aliquet pharetra felis eu pharetra. Praesent pellentesque pellentesque ligula vel fermentum. Fusce placerat molestie ante, rhoncus laoreet lectus ultricies eget. Fusce quis purus lacus. Donec eget sagittis nibh, quis iaculis augue. Pellentesque in lectus ut sapien venenatis pellentesque id sed quam.\n"
-    //        + "\n"
-    //        + "Curabitur tempor consequat nisl, ut pretium ligula rhoncus nec. Donec feugiat iaculis justo, vel consectetur quam egestas quis. Cras sodales non orci at aliquam. Praesent vulputate, magna et bibendum maximus, lectus metus finibus justo, id egestas nisi velit ut tellus. Vivamus eget mauris sit amet lacus iaculis euismod a non ex. Pellentesque consequat sem vitae felis aliquam, sit amet vehicula dolor dignissim. Aenean vel odio sagittis, placerat ligula in, vulputate mi. In pretium tristique sodales. Nulla sed nibh lobortis, fringilla urna quis, tristique diam. Integer lobortis dictum mauris, eget consectetur ex vehicula gravida. Proin lobortis, felis et vehicula rutrum, mauris nulla ultricies massa, in volutpat magna ante eget turpis. ";
-    String text = "test";
+    private String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel aliquam ex. Fusce eu sapien tempus, varius erat eget, aliquam magna. Curabitur quis velit id mi ornare molestie quis a ipsum. Etiam ullamcorper ornare feugiat. Fusce aliquet pharetra felis eu pharetra. Praesent pellentesque pellentesque ligula vel fermentum. Fusce placerat molestie ante, rhoncus laoreet lectus ultricies eget. Fusce quis purus lacus. Donec eget sagittis nibh, quis iaculis augue. Pellentesque in lectus ut sapien venenatis pellentesque id sed quam.\n"
+            + "\n"
+            + "Curabitur tempor consequat nisl, ut pretium ligula rhoncus nec. Donec feugiat iaculis justo, vel consectetur quam egestas quis. Cras sodales non orci at aliquam. Praesent vulputate, magna et bibendum maximus, lectus metus finibus justo, id egestas nisi velit ut tellus. Vivamus eget mauris sit amet lacus iaculis euismod a non ex. Pellentesque consequat sem vitae felis aliquam, sit amet vehicula dolor dignissim. Aenean vel odio sagittis, placerat ligula in, vulputate mi. In pretium tristique sodales. Nulla sed nibh lobortis, fringilla urna quis, tristique diam. Integer lobortis dictum mauris, eget consectetur ex vehicula gravida. Proin lobortis, felis et vehicula rutrum, mauris nulla ultricies massa, in volutpat magna ante eget turpis. ";
+    //String text = "test";
 
     static Thread t;
 
