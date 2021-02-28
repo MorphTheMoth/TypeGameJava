@@ -30,7 +30,7 @@ public class SpeakerThread extends Thread {
         if( ThreadNum < MAXTHREAD )     //non ne mette più di uno in coda 
         {
             new SpeakerThread(text).start();
-            typinggame.TypingGame.sottotitoli.setText(text);
+            typinggame.TypingGame.sottotitoli.setText("[" + text + "]");
         }
     }
 
@@ -72,7 +72,10 @@ public class SpeakerThread extends Thread {
         // Allocate your chosen voice
         freettsVoice.allocate();
         
-        
+        freettsVoice.setRate(145);
+        freettsVoice.setPitch(200);
+        freettsVoice.setVolume(1);
+
         
         /*voice = VoiceManager.getInstance().getVoice("us1");
         if (voice != null) {

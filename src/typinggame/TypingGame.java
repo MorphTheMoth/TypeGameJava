@@ -7,11 +7,15 @@ import java.awt.event.KeyListener;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -37,7 +41,8 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
     static Thread t;
 
     public static void main(String[] args) {
-
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameHeight = 600, frameWidth = 1000;
         text = RandomTextApi.getText();
         
         //System.out.println(text);
@@ -47,7 +52,8 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
         TypingGame typinggame = new TypingGame();
         frame.getContentPane().add(typinggame);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(800, 400);
+        frame.setSize(frameWidth, frameHeight);
+        frame.setLocation((dimension.width - frameWidth)/2, (dimension.height - frameHeight)/2);        //center frame
 
         RandomInsultAPI.initialize();
         SpeakerThread.initialize();
@@ -71,7 +77,6 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
     public static double timer = 0;
     public static JLabel sottotitoli = new JLabel();
     private boolean vittoria = false;
-
     public TypingGame() {
         super(new BorderLayout());
         textPane.setText(text);
@@ -79,6 +84,7 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
         label.setText("Timer: 0.00");
         sottotitoli.setHorizontalAlignment(JLabel.CENTER);
         sottotitoli.setVerticalAlignment(JLabel.BOTTOM);
+        sottotitoli.setFont(new Font("big", Font.PLAIN, 15));
         timerPanel.add(label);
         buttonPanel.add(button);
         rootPanel.add(timerPanel, BorderLayout.LINE_START);

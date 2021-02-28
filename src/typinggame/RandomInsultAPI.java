@@ -68,7 +68,10 @@ public class RandomInsultAPI extends Thread {
             response.close();
             
             s = s.replaceAll("&quot;", "\"");
-            
+            s = s.replaceAll("&gt;", ">");
+            s = s.replaceAll("&amp;", "&");
+
+
             return s;
             
         } catch (IOException e) {
