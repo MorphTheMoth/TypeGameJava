@@ -40,7 +40,6 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
 
         text = RandomTextApi.getText();
         
-        text = text.substring( text.indexOf("<textarea id=\"generatedtext\">")+29, text.indexOf("</textarea>")-1 );
         //System.out.println(text);
         
         
@@ -158,7 +157,6 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(TypingGame.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             label.setText("Timer: " + df2.format(timer));
         }
     }

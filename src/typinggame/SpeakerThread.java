@@ -61,12 +61,14 @@ public class SpeakerThread extends Thread {
         freettsVM = VoiceManager.getInstance();
 
         Voice[] arr = VoiceManager.getInstance().getVoices();
-        for(int i=0; i<arr.length; i++)
-            System.out.println("   --   "+arr[i].getName());
+        //for(int i=0; i<arr.length; i++)
+        //    System.out.println("   --   "+arr[i].getName());
         
         // Simply change to MBROLA voice
         freettsVoice = freettsVM.getVoice("mbrola_us1");
-
+        freettsVoice.setPitch(160);
+        freettsVoice.setPitchRange(30);
+        freettsVoice.setRate(120);
         // Allocate your chosen voice
         freettsVoice.allocate();
         

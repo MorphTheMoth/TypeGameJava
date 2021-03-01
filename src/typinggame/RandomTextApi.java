@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
+//import java.security.MessageDigest;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -48,14 +49,22 @@ public class RandomTextApi {
             String s = response.lines().collect(Collectors.joining());
             response.close();
             
-            //System.out.println(s);
             
-            return s;
+            s = s.substring( s.indexOf("<textarea id=\"generatedtext\">")+29, s.indexOf("</textarea>")-1 );
+            //System.out.println(s);
+            return s.substring(0, ordinalIndexOf(s, ".", 15)+1);
             
         } catch (IOException e) {
             e.printStackTrace();
         }
         
         return "";
+    }
+
+    public static int ordinalIndexOf(String str, String substr, int n) {
+        int pos = str.indexOf(substr);
+        while (--n > 0 && pos != -1)
+            pos = str.indexOf(substr, pos + 1);
+        return pos;
     }
 }
