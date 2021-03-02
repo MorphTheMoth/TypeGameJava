@@ -31,36 +31,29 @@ import javax.swing.text.StyledDocument;
  */
 public class TypingGame extends JPanel implements KeyListener, Runnable {
 
-    private static String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel aliquam ex. Fusce eu sapien tempus, varius erat eget, aliquam magna. Curabitur quis velit id mi ornare molestie quis a ipsum. Etiam ullamcorper ornare feugiat. Fusce aliquet pharetra felis eu pharetra. Praesent pellentesque pellentesque ligula vel fermentum. Fusce placerat molestie ante, rhoncus laoreet lectus ultricies eget. Fusce quis purus lacus. Donec eget sagittis nibh, quis iaculis augue. Pellentesque in lectus ut sapien venenatis pellentesque id sed quam.\n"
-            + "\n"
-            + "Curabitur tempor consequat nisl, ut pretium ligula rhoncus nec. Donec feugiat iaculis justo, vel consectetur quam egestas quis. Cras sodales non orci at aliquam. Praesent vulputate, magna et bibendum maximus, lectus metus finibus justo, id egestas nisi velit ut tellus. Vivamus eget mauris sit amet lacus iaculis euismod a non ex. Pellentesque consequat sem vitae felis aliquam, sit amet vehicula dolor dignissim. Aenean vel odio sagittis, placerat ligula in, vulputate mi. In pretium tristique sodales. Nulla sed nibh lobortis, fringilla urna quis, tristique diam. Integer lobortis dictum mauris, eget consectetur ex vehicula gravida. Proin lobortis, felis et vehicula rutrum, mauris nulla ultricies massa, in volutpat magna ante eget turpis. ";
-    //String text = "test";
-
-    
-    
+    static String text = "test";
+    static TypingGame typinggame;
+    static JFrame frame;
     static Thread t;
+    static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
     public static void main(String[] args) {
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameHeight = 600, frameWidth = 1000;
+        int frameHeight = 500, frameWidth = 800;
         text = RandomTextApi.getText();
-        
+        text = "test";
         //System.out.println(text);
-        
-        
-        JFrame frame = new JFrame("KeyTyping Game");
-        TypingGame typinggame = new TypingGame();
+        typinggame = new TypingGame();
+        frame = new JFrame("KeyTyping Game");
         frame.getContentPane().add(typinggame);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(frameWidth, frameHeight);
-        frame.setLocation((dimension.width - frameWidth)/2, (dimension.height - frameHeight)/2);        //center frame
+        frame.setLocation((dimension.width - frameWidth) / 2, (dimension.height - frameHeight) / 2);        //center frame
 
         RandomInsultAPI.initialize();
         SpeakerThread.initialize();
 
         frame.setVisible(true);
 
-        t = new Thread(typinggame);
 
     }
 
@@ -69,6 +62,7 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
     JTextPane textPane = new JTextPane(doc);
     JLabel label = new JLabel();
     JButton button = new JButton("start");
+    JButton dashboard = new JButton("dashboard");
 
     JPanel rootPanel = new JPanel();
     JPanel timerPanel = new JPanel();
@@ -77,6 +71,7 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
     public static double timer = 0;
     public static JLabel sottotitoli = new JLabel();
     private boolean vittoria = false;
+
     public TypingGame() {
         super(new BorderLayout());
         textPane.setText(text);
@@ -91,20 +86,48 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
         rootPanel.add(buttonPanel, BorderLayout.CENTER);
         super.add(new JScrollPane(textPane), BorderLayout.NORTH);
         super.add(rootPanel, BorderLayout.CENTER);
+        
+        JPanel southGrid = new JPanel(new GridLayout(2, 1));
+        southGrid.add(sottotitoli);
+        southGrid.add(dashboard);
+
         super.add(sottotitoli, BorderLayout.SOUTH);
+        super.add(dashboard, BorderLayout.SOUTH);
 
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!t.isAlive()) {
+                if(vittoria){
+                    vittoria = false;
+                    timer = 0;
+                    StyleConstants.setBackground(set, Color.white);
+                    StyleConstants.setForeground(set, Color.black);
+                    doc.setCharacterAttributes(0, text.length(), set, true);
+                    count=0;
+                }
+                
+                if (!vittoria) {
                     textPane.requestFocus();
                     button.setEnabled(false);
 
+                    t = new Thread(typinggame);
                     t.start();
+
                 }
+                
+                
             }
         });
 
+        dashboard.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ApiPortal apiPortal = new ApiPortal();
+                apiPortal.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
+        
     }
 
     @Override
@@ -139,13 +162,16 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
             if (count == text.length()) {
                 System.out.println("vittoria");
                 vittoria = true;
+                button.setEnabled(true);
                 textPane.removeKeyListener(this);
                 t.stop();
-                
+
+
             }
         }
 
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
