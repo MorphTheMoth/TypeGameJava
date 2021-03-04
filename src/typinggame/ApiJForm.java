@@ -314,7 +314,7 @@ public class ApiJForm extends javax.swing.JFrame {
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         try {
-            if (removeInsultMethod(name, psw, addTitoloInsulto.getText()) == 0) {
+            if (removeInsultMethod(name, psw, removeTitoloInsulto.getText()) == 0) {
                 JOptionPane.showMessageDialog(this, "insulto rimosso con successo");
             }
         } catch (IOException ex) {

@@ -40,7 +40,6 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
     public static void main(String[] args) {
         int frameHeight = 500, frameWidth = 800;
         text = RandomTextApi.getText();
-        text = "test";
         //System.out.println(text);
         typinggame = new TypingGame();
         frame = new JFrame("KeyTyping Game");
@@ -169,7 +168,9 @@ public class TypingGame extends JPanel implements KeyListener, Runnable {
 
             }
         }
-
+        
+        //set subtitles
+        sottotitoli.setText("[" + SpeakerThread.threads.get(SpeakerThread.threads.size()-1).currentText + "]");
     }
 
 
