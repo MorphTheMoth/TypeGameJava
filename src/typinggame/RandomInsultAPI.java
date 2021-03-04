@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -13,7 +15,9 @@ import java.util.stream.Collectors;
  */
 public class RandomInsultAPI extends Thread {
 
-    private static String nextInsult;
+    private static String nextInsult = "";
+    
+    private static String temp = "";
 
     public static void initialize() {
         //get first string...
@@ -31,11 +35,19 @@ public class RandomInsultAPI extends Thread {
     public RandomInsultAPI() {
         //thread constructor
     }
-
+    
     public void run() {
         //request insult
-        //set 'nextInsult' to the response 
-        nextInsult = doRequest();//String.valueOf((int) Math.floor(Math.random() * 10));   //DA MODIFICARE CON L'INSULTO
+        //set 'nextInsult' to the response
+        
+        do{
+            temp = doRequest();
+            //System.out.println("ciao - "+temp+"\nlmao - "+nextInsult);
+            //System.out.println(!nextInsult.equals(temp));
+        }while(nextInsult.equals(temp));
+        
+        nextInsult = temp;
+        
     }
     
     public String doRequest(){

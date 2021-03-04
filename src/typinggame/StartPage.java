@@ -22,9 +22,6 @@ import javax.swing.text.StyledDocument;
  */
 public class StartPage extends javax.swing.JFrame implements KeyListener, Runnable {
 
-    static void addSottotitoli(String text) {
-        sottotitoli.setText(text);
-    }
 
     /**
      * Creates new form StartPage
@@ -211,7 +208,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
     private boolean vittoria = false;
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e)  {
         //System.out.println(e.getKeyChar());
         if (e.getKeyCode() != KeyEvent.VK_SHIFT) {
 
@@ -240,7 +237,6 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
                 textPane.removeKeyListener(this);
                 t.stop();
 
-
             }
         }
     }
@@ -262,7 +258,10 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
             } catch (InterruptedException ex) {
                 Logger.getLogger(TypingGame.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            if( SpeakerThread.threads.size() > 0 )
+                sottotitoli.setText(SpeakerThread.threads.get(SpeakerThread.threads.size()-1).currentText);
+            else
+                sottotitoli.setText("");
             timerLabel.setText(df2.format(timer));
         }
     }

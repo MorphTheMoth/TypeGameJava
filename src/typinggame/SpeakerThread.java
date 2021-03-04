@@ -54,8 +54,7 @@ public class SpeakerThread extends Thread {
         if( ThreadNum < MAXTHREAD )     //non ne mette più di uno in coda 
         {
             threads.add(0, new SpeakerThread(text) );
-            threads.get(threads.size()-1).start();
-            typinggame.StartPage.addSottotitoli(text);
+            threads.get(0).start();
         }
     }
 
@@ -69,6 +68,7 @@ public class SpeakerThread extends Thread {
         freettsVoice.speak(currentText);
         ThreadNum--;
         
+        threads.remove(this);
     }
 
     
