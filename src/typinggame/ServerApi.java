@@ -33,7 +33,9 @@ public class ServerApi {
 
         URL url = new URL("http://93.56.110.73:3404/users/");
         URLConnection con = url.openConnection();
+
         HttpURLConnection http = (HttpURLConnection) con;
+                
         http.setRequestMethod("POST"); // PUT is another valid option
         http.setDoOutput(true);
         String json = "{\"name\": \"" + name + "\", \"psw\": \"" + psw + "\"}";

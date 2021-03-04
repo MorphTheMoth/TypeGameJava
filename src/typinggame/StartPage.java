@@ -6,6 +6,7 @@
 package typinggame;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
@@ -40,7 +41,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
 
         RandomInsultAPI.initialize();
         SpeakerThread.initialize();
-
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("angry.png")));
         text = RandomTextApi.getText();
         textPane.setText(text);
     }
@@ -63,6 +64,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
         textPane = new javax.swing.JTextPane(doc);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Angry Typing Game");
 
         jLabel1.setText("timer:");
 
@@ -83,6 +85,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
             }
         });
 
+        textPane.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jScrollPane2.setViewportView(textPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,11 +98,11 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
                     .addComponent(jScrollPane2)
                     .addComponent(sottotitoli, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(timerLabel))
+                                .addComponent(timerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(startButton)
                             .addComponent(dashboardButton))
                         .addGap(0, 541, Short.MAX_VALUE)))
@@ -113,7 +116,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(timerLabel))
+                    .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(startButton)
                 .addGap(18, 18, 18)
@@ -124,6 +127,7 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
