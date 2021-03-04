@@ -55,6 +55,7 @@ public class SpeakerThread extends Thread {
         {
             threads.add(0, new SpeakerThread(text) );
             threads.get(threads.size()-1).start();
+            typinggame.StartPage.addSottotitoli(text);
         }
     }
 
