@@ -45,7 +45,13 @@ public class RandomInsultAPI extends Thread {
             temp = doRequest();
             //System.out.println("ciao - "+temp+"\nlmao - "+nextInsult);
             //System.out.println(!nextInsult.equals(temp));
-        } while (nextInsult.equals(temp));
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(RandomInsultAPI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //System.out.println("--"+temp+"--  --"+temp.length()+"--");
+        } while (nextInsult.equals(temp) || temp.length() > 106);
 
         nextInsult = temp;
 
