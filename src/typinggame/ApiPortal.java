@@ -5,13 +5,9 @@
  */
 package typinggame;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static typinggame.TypingGame.dimension;
-import static typinggame.TypingGame.frame;
 import static typinggame.ServerApi.*;
 
 /**
@@ -23,14 +19,10 @@ public class ApiPortal extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
+    StartPage startPage;
+    
     public ApiPortal() {
         initComponents();
-        falseMain();
-    }
-
-    public void falseMain() {
-
-        //errorBox.setText("ciao");              per displayare gli errori
     }
 
     /**
@@ -49,9 +41,16 @@ public class ApiPortal extends javax.swing.JFrame {
         errorBox = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("API PORTAL");
@@ -78,6 +77,8 @@ public class ApiPortal extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
+
+        errorBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -186,12 +187,11 @@ public class ApiPortal extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         try {
-
             if (loginMethod(nameLabel.getText(), passwordLabel.getText()) == 0) {
                 ApiJForm apiJForm = new ApiJForm(nameLabel.getText(), passwordLabel.getText());
                 apiJForm.setVisible(true);
 
-                this.setVisible(false);
+                this.dispose();
             } else {
                 errorBox.setText("login fallito");
             }
@@ -201,6 +201,10 @@ public class ApiPortal extends javax.swing.JFrame {
             Logger.getLogger(ApiPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        this.dispose();
+    }//GEN-LAST:event_formWindowLostFocus
 
     /**
      * @param args the command line arguments

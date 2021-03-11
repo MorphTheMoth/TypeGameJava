@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/cmudict04.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/cmulex.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/en_us.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/freetts.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/jsapi.jar"/>
+	<classpathentry kind="lib" path="freetts-1.2.2-bin/mbrola.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.5.13.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.14.jar"/>
+	<classpathentry kind="lib" path="lib/java-json.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

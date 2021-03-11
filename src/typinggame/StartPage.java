@@ -23,7 +23,6 @@ import javax.swing.text.StyledDocument;
  */
 public class StartPage extends javax.swing.JFrame implements KeyListener, Runnable {
 
-
     /**
      * Creates new form StartPage
      */
@@ -153,7 +152,6 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
     private void dashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardButtonActionPerformed
         ApiPortal apiPortal = new ApiPortal();
         apiPortal.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_dashboardButtonActionPerformed
 
     /**
@@ -269,4 +267,5 @@ public class StartPage extends javax.swing.JFrame implements KeyListener, Runnab
             timerLabel.setText(df2.format(timer));
         }
     }
+    
 }
